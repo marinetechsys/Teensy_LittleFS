@@ -236,7 +236,7 @@ private:
 class LittleFS : public FS
 {
 public:
-	constexpr LittleFS() {
+	LittleFS() {
 	}
 	virtual ~LittleFS() { }
 	virtual bool format(int type=0, char progressChar=0, Print& pr=Serial) {
@@ -361,7 +361,7 @@ protected:
 class LittleFS_RAM : public LittleFS
 {
 public:
-	constexpr LittleFS_RAM() { }
+	LittleFS_RAM() { }
 	bool begin(uint32_t size) {
 #if defined(__IMXRT1062__)
 		return begin(extmem_malloc(size), size);
@@ -448,7 +448,7 @@ private:
 class LittleFS_SPIFlash : public LittleFS
 {
 public:
-	constexpr LittleFS_SPIFlash() { }
+	LittleFS_SPIFlash() { }
 	bool begin(uint8_t cspin, SPIClass &spiport=SPI);
 	const char * getMediaName();
 	const char * name() { return getMediaName(); }
@@ -484,7 +484,7 @@ private:
 class LittleFS_SPIFram : public LittleFS
 {
 public:
-	constexpr LittleFS_SPIFram() { }
+	LittleFS_SPIFram() { }
 	bool begin(uint8_t cspin, SPIClass &spiport=SPI);
 	const char * getMediaName();
 	const char * name() { return getMediaName(); }
@@ -520,7 +520,7 @@ private:
 class LittleFS_QSPIFlash : public LittleFS
 {
 public:
-	constexpr LittleFS_QSPIFlash() { }
+	LittleFS_QSPIFlash() { }
 	bool begin();
 	const char * getMediaName();
 	const char * name() { return getMediaName(); }
@@ -552,7 +552,7 @@ private:
 class LittleFS_QSPIFlash : public LittleFS
 {
 public:
-	constexpr LittleFS_QSPIFlash() { }
+	LittleFS_QSPIFlash() { }
 	bool begin() { return false; }
 };
 #endif
@@ -563,7 +563,7 @@ public:
 class LittleFS_Program : public LittleFS
 {
 public:
-	constexpr LittleFS_Program() { }
+	LittleFS_Program() { }
 	bool begin(uint32_t size);
 	const char * getMediaName();
 	const char * name() { return getMediaName(); }
@@ -581,7 +581,7 @@ private:
 class LittleFS_Program : public LittleFS
 {
 public:
-	constexpr LittleFS_Program() { }
+	LittleFS_Program() { }
 	bool begin(uint32_t size) { return false; }
 	const char * getMediaName() { return (const char *)F("PROGRAM"); }
 	const char * name() { return getMediaName(); }
@@ -591,7 +591,7 @@ public:
 class LittleFS_SPINAND : public LittleFS
 {
 public:
-	constexpr LittleFS_SPINAND() { }
+	LittleFS_SPINAND() { }
 	bool begin(uint8_t cspin, SPIClass &spiport=SPI);
 	uint8_t readECC(uint32_t address, uint8_t *data, int length);
 	void readBBLUT(uint16_t *LBA, uint16_t *PBA, uint8_t *linkStatus);
@@ -650,7 +650,7 @@ private:
 class LittleFS_QPINAND : public LittleFS
 {
 public:
-	constexpr LittleFS_QPINAND() { }
+	LittleFS_QPINAND() { }
 	bool begin();
 	bool deviceErase();
 	uint8_t readECC(uint32_t targetPage, uint8_t *buf, int size);
@@ -722,7 +722,7 @@ class FS_NONE : public FS {
 
 class LittleFS_SPI : public FS {
 public:
-  constexpr LittleFS_SPI(uint8_t pin=0xff) : csPin_(pin) {}
+  LittleFS_SPI(uint8_t pin=0xff) : csPin_(pin) {}
   bool begin(uint8_t cspin=0xff, SPIClass &spiport=SPI);
   inline LittleFS * fs() { return (pfs == &fsnone)? nullptr : (LittleFS*)pfs ;}
   inline const char * displayName() {return display_name;}
@@ -759,7 +759,7 @@ private:
 #ifdef __IMXRT1062__
 class LittleFS_QSPI : public FS {
 public:
-  constexpr LittleFS_QSPI(){}
+  LittleFS_QSPI(){}
   bool begin();
   inline LittleFS * fs() { return (pfs == &fsnone)? nullptr : (LittleFS*)pfs ;}
   inline const char * displayName() {return display_name;}
